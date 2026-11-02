@@ -22,6 +22,8 @@ and the configuration saved. Download one, double-click it, and ping.
 
 ## How to use a file
 
+**Step-by-step guide for lab PCs (which file, download, open, test, fallback): [HOW_TO_RUN.md](HOW_TO_RUN.md)**
+
 1. Open the program's folder and click the `.pkt` file, then **Download raw file** (the ⬇ button).
 2. Open it in **Cisco Packet Tracer 8.2.1 or newer** (8.2.2 and 9.x work too).
 3. Wait about 30–60 seconds. Switch ports go from orange to green while spanning tree settles,

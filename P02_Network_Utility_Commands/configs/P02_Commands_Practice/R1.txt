@@ -1,0 +1,14 @@
+enable
+configure terminal
+hostname R1
+interface GigabitEthernet0/0
+ ip address 192.168.1.1 255.255.255.0
+ no shutdown
+ exit
+interface GigabitEthernet0/1
+ ip address 10.1.1.1 255.255.255.252
+ no shutdown
+ exit
+ip route 192.168.2.0 255.255.255.0 10.1.1.2
+end
+write memory

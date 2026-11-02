@@ -1,0 +1,22 @@
+enable
+configure terminal
+hostname R1
+interface GigabitEthernet0/0
+ description Inside LAN
+ ip address 192.168.1.1 255.255.255.0
+ ip nat inside
+ no shutdown
+ exit
+interface Serial0/0/0
+ description To ISP
+ ip address 203.0.113.1 255.255.255.252
+ ip nat outside
+ clock rate 64000
+ no shutdown
+ exit
+ip nat pool PUBLIC_POOL 203.0.113.20 203.0.113.30 netmask 255.255.255.0
+ip nat inside source list 1 pool PUBLIC_POOL
+ip route 0.0.0.0 0.0.0.0 203.0.113.2
+access-list 1 permit 192.168.1.0 0.0.0.255
+end
+write memory

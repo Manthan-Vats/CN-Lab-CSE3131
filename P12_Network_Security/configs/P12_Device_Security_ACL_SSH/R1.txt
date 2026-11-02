@@ -1,0 +1,40 @@
+enable
+configure terminal
+hostname R1
+enable secret Str0ngEnable!
+line console 0
+ password Con$ole1
+ login
+ exit
+service password-encryption
+banner motd #Unauthorised access is prohibited#
+interface GigabitEthernet0/0
+ description Staff LAN
+ ip address 192.168.10.1 255.255.255.0
+ no shutdown
+ exit
+interface GigabitEthernet0/1
+ description Guest LAN
+ ip address 192.168.20.1 255.255.255.0
+ ip access-group 110 in
+ no shutdown
+ exit
+interface GigabitEthernet0/2
+ description Server LAN
+ ip address 192.168.30.1 255.255.255.0
+ no shutdown
+ exit
+access-list 10 permit host 192.168.10.20
+access-list 110 deny ip 192.168.20.0 0.0.0.255 host 192.168.30.100
+access-list 110 permit ip any any
+ip domain-name cnlab.local
+username admin secret Adm1n@123
+crypto key generate rsa general-keys modulus 1024
+ip ssh version 2
+line vty 0 4
+ access-class 10 in
+ login local
+ transport input ssh
+ exit
+end
+write memory

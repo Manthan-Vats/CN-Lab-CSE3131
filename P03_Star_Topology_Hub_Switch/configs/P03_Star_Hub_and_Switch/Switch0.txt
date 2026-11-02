@@ -1,0 +1,15 @@
+enable
+configure terminal
+hostname Switch0
+enable secret class
+line console 0
+ password cisco
+ login
+ exit
+line vty 0 4
+ password cisco
+ login
+ exit
+banner motd #Authorised access only - CN Lab#
+end
+write memory

@@ -1,0 +1,24 @@
+enable
+configure terminal
+hostname R1
+interface GigabitEthernet0/0
+ ip address 192.168.2.1 255.255.255.0
+ no shutdown
+ exit
+interface Serial0/0/0
+ ip address 10.0.0.2 255.0.0.0
+ no shutdown
+ exit
+interface Serial0/0/1
+ ip address 11.0.0.1 255.0.0.0
+ clock rate 64000
+ no shutdown
+ exit
+router ospf 1
+ log-adjacency-changes
+ network 192.168.2.0 0.0.0.255 area 0
+ network 10.0.0.0 0.255.255.255 area 0
+ network 11.0.0.0 0.255.255.255 area 0
+ exit
+end
+write memory

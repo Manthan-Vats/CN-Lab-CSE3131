@@ -1,0 +1,18 @@
+enable
+configure terminal
+hostname R2
+interface GigabitEthernet0/0
+ ip address 30.0.0.1 255.0.0.0
+ no shutdown
+ exit
+interface Serial0/0/0
+ ip address 20.0.0.2 255.0.0.0
+ no shutdown
+ exit
+router ospf 1
+ log-adjacency-changes
+ network 20.0.0.0 0.255.255.255 area 0
+ network 30.0.0.0 0.255.255.255 area 0
+ exit
+end
+write memory

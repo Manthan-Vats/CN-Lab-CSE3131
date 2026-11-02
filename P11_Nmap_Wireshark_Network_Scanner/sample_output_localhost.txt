@@ -1,0 +1,7 @@
+TCP connect scan of 127.0.0.1 (127.0.0.1): 31 ports in 0.5s
+PORT     STATE   SERVICE
+135/tcp  open    epmap
+445/tcp  open    microsoft-ds
+3306/tcp open    mysql
+5432/tcp open    postgresql
+27 closed or filtered ports not shown

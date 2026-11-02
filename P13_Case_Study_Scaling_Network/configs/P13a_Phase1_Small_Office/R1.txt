@@ -1,0 +1,25 @@
+enable
+configure terminal
+hostname R1
+ip dhcp excluded-address 192.168.1.1 192.168.1.10
+ip dhcp pool OFFICE
+ network 192.168.1.0 255.255.255.0
+ default-router 192.168.1.1
+ dns-server 198.51.100.10
+ exit
+interface GigabitEthernet0/0
+ ip address 192.168.1.1 255.255.255.0
+ ip nat inside
+ no shutdown
+ exit
+interface Serial0/0/0
+ ip address 203.0.113.1 255.255.255.252
+ ip nat outside
+ clock rate 64000
+ no shutdown
+ exit
+ip nat inside source list 1 interface Serial0/0/0 overload
+ip route 0.0.0.0 0.0.0.0 203.0.113.2
+access-list 1 permit 192.168.1.0 0.0.0.255
+end
+write memory

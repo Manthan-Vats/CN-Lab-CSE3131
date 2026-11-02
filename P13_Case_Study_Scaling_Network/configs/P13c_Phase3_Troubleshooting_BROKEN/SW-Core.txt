@@ -1,0 +1,27 @@
+enable
+configure terminal
+hostname SW-Core
+vlan 10
+ name SALES
+ exit
+vlan 20
+ name HR
+ exit
+vlan 99
+ name SERVERS
+ exit
+interface GigabitEthernet0/1
+ switchport mode trunk
+ exit
+interface FastEthernet0/1
+ switchport mode trunk
+ exit
+interface FastEthernet0/2
+ switchport mode trunk
+ exit
+interface FastEthernet0/10
+ switchport access vlan 99
+ switchport mode access
+ exit
+end
+write memory

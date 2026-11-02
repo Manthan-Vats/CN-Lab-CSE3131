@@ -1,0 +1,30 @@
+enable
+configure terminal
+hostname Switch1
+vlan 10
+ name STUDENT
+ exit
+vlan 20
+ name FACULTY
+ exit
+interface FastEthernet0/1
+ switchport access vlan 10
+ switchport mode access
+ exit
+interface FastEthernet0/2
+ switchport access vlan 10
+ switchport mode access
+ exit
+interface FastEthernet0/3
+ switchport access vlan 20
+ switchport mode access
+ exit
+interface FastEthernet0/4
+ switchport access vlan 20
+ switchport mode access
+ exit
+interface GigabitEthernet0/1
+ switchport mode trunk
+ exit
+end
+write memory

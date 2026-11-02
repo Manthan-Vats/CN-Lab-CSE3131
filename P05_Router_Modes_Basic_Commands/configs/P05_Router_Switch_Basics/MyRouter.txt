@@ -1,0 +1,21 @@
+enable
+configure terminal
+hostname MyRouter
+enable secret class
+line console 0
+ password cisco
+ login
+ exit
+line vty 0 4
+ password cisco
+ login
+ exit
+service password-encryption
+banner motd #MyRouter - CN Lab Program 5#
+interface GigabitEthernet0/0
+ description Link to MySwitch
+ ip address 192.168.1.1 255.255.255.0
+ no shutdown
+ exit
+end
+write memory

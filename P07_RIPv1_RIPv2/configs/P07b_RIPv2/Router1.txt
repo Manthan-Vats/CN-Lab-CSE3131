@@ -1,0 +1,19 @@
+enable
+configure terminal
+hostname Router1
+interface GigabitEthernet0/0
+ ip address 30.0.0.2 255.0.0.0
+ no shutdown
+ exit
+interface GigabitEthernet0/1
+ ip address 40.0.0.1 255.0.0.0
+ no shutdown
+ exit
+router rip
+ version 2
+ network 30.0.0.0
+ network 40.0.0.0
+ no auto-summary
+ exit
+end
+write memory

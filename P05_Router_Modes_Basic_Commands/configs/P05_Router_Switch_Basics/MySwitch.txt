@@ -1,0 +1,31 @@
+enable
+configure terminal
+hostname MySwitch
+enable secret class
+line console 0
+ password cisco
+ login
+ exit
+line vty 0 4
+ password cisco
+ login
+ exit
+service password-encryption
+vlan 10
+ name Sales
+ exit
+interface FastEthernet0/1
+ switchport access vlan 10
+ switchport mode access
+ exit
+interface FastEthernet0/2
+ switchport access vlan 10
+ switchport mode access
+ exit
+interface FastEthernet0/24
+ description Uplink to MyRouter
+ switchport access vlan 10
+ switchport mode access
+ exit
+end
+write memory

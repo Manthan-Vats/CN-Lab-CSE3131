@@ -1,0 +1,22 @@
+enable
+configure terminal
+hostname R2
+interface GigabitEthernet0/0
+ description to R1
+ ip address 10.0.12.2 255.255.255.252
+ no shutdown
+ exit
+interface Serial0/0/0
+ description backup ISP link
+ ip address 203.0.113.5 255.255.255.252
+ clock rate 64000
+ no shutdown
+ exit
+router ospf 1
+ log-adjacency-changes
+ network 10.0.12.0 0.0.0.3 area 0
+ exit
+ip route 0.0.0.0 0.0.0.0 203.0.113.6
+ip route 203.0.113.64 255.255.255.248 10.0.12.1
+end
+write memory

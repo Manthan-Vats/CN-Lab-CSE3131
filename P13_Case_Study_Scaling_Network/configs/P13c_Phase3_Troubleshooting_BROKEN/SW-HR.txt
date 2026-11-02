@@ -1,0 +1,29 @@
+enable
+configure terminal
+hostname SW-HR
+vlan 10
+ name SALES
+ exit
+vlan 20
+ name HR
+ exit
+vlan 99
+ name SERVERS
+ exit
+interface FastEthernet0/24
+ switchport mode trunk
+ exit
+interface FastEthernet0/1
+ switchport access vlan 20
+ switchport mode access
+ exit
+interface FastEthernet0/2
+ switchport access vlan 20
+ switchport mode access
+ exit
+interface FastEthernet0/3
+ switchport access vlan 10
+ switchport mode access
+ exit
+end
+write memory

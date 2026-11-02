@@ -1,0 +1,32 @@
+enable
+configure terminal
+hostname SW1
+enable secret Str0ngEnable!
+line console 0
+ password Con$ole1
+ login
+ exit
+service password-encryption
+interface FastEthernet0/1
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 1
+ switchport port-security mac-address sticky
+ switchport port-security violation shutdown
+ exit
+interface FastEthernet0/2
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 1
+ switchport port-security mac-address sticky
+ switchport port-security violation shutdown
+ exit
+interface FastEthernet0/3
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 1
+ switchport port-security mac-address sticky
+ switchport port-security violation shutdown
+ exit
+end
+write memory

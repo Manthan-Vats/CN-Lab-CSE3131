@@ -37,8 +37,9 @@ def check(path):
     errs = []
     xml = ptfile.decode(open(path, "rb").read())
     root = ET.fromstring(xml)
-    if not root.findtext("VERSION"):
-        errs.append("no VERSION")
+    ver = root.findtext("VERSION") or ""
+    if not re.fullmatch(r"\d+\.\d+\.\d+\.\d+", ver):
+        errs.append("bad or missing top-level VERSION: %r" % ver)
     pw = root.find("PHYSICALWORKSPACE")
     uuids = {n.findtext("UUID_STR") for n in pw.iter("NODE")}
     devs = {}

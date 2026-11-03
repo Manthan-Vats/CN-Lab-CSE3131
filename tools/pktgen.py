@@ -26,6 +26,14 @@ import ptfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 TPL = os.path.join(HERE, "templates")
 
+# Version stamp written to the top-level <VERSION> tag of every generated file.
+# Packet Tracer refuses ("created with a newer version") any file whose stamp is
+# higher than the copy that opens it, and happily opens files stamped lower. The
+# device blocks come from an 8.2.1 save, but the stamp is deliberately low so the
+# files open on lab PCs running 7.x, 8.0, 8.1 and 8.2.0 as well as 8.2.x and 9.x.
+# Change it here (or run tools/restamp.py on a finished file) to target something else.
+FILE_VERSION = "7.0.0.0000"
+
 # Physical interface names in the order the template stores its <PORT> elements.
 PORTS = {
     "router2911": ["Serial0/0/0", "Serial0/0/1",
@@ -584,6 +592,7 @@ class Lab:
     def to_xml(self):
         sk = _Skeleton()
         root = sk.root
+        root.find("VERSION").text = FILE_VERSION
         devs = root.find("NETWORK/DEVICES")
         for d in self.devices:
             devs.append(d.to_xml(sk))

@@ -10,5 +10,8 @@
   and reset (names, addresses, configs) for each lab.
 - Cisco and Packet Tracer are trademarks of Cisco Systems, Inc. This is an unofficial student
   repository for the CSE3131 Computer Networks lab, made for learning.
-- Files open in Packet Tracer 8.2.1 and newer. If a lab PC says the file is from a newer
-  version, update Packet Tracer.
+- The device blocks come from 8.2.1 saves, but every file is stamped `7.0.0.0000` so older
+  Packet Tracer copies accept it (they refuse files stamped newer than themselves). The saved
+  configs use only basic IOS commands that exist on every Packet Tracer 7.x to 9.x image.
+  This was checked by decoding the files; it has not been tested inside every Packet Tracer
+  release. If a lab PC still refuses a file, see `tools/restamp.py` and HOW_TO_RUN.md.

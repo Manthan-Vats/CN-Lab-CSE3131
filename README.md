@@ -25,7 +25,9 @@ and the configuration saved. Download one, double-click it, and ping.
 **Step-by-step guide for lab PCs (which file, download, open, test, fallback): [HOW_TO_RUN.md](HOW_TO_RUN.md)**
 
 1. Open the program's folder and click the `.pkt` file, then **Download raw file** (the ⬇ button).
-2. Open it in **Cisco Packet Tracer 8.2.1 or newer** (8.2.2 and 9.x work too).
+2. Open it in **Cisco Packet Tracer 7.x, 8.x or 9.x**. The files are stamped as version
+   `7.0.0.0000`, so older lab installs (8.0, 8.1, 8.2.0) don't reject them as "created with a
+   newer version". See [HOW_TO_RUN.md](HOW_TO_RUN.md) if yours still complains.
 3. Wait about 30–60 seconds. Switch ports go from orange to green while spanning tree settles,
    and OSPF/RIP need a few seconds to exchange routes. To skip the wait, press **Fast Forward Time**
    (bottom-left) a few times.
@@ -76,6 +78,10 @@ programmatically. Everything needed to rebuild them is in [`tools/`](tools/):
   NAT, ACL, planted faults).
 - `selftest.py` breaks working labs on purpose (24 classic mistakes) to prove the simulator
   really catches errors.
+
+- `restamp.py` shows or changes the version stamp of any finished `.pkt` without touching
+  anything else (`python restamp.py --show .`, or `python restamp.py file.pkt --version X.Y.Z.W`).
+  The default stamp for a rebuild is `FILE_VERSION` in `pktgen.py`.
 
 ```
 cd tools

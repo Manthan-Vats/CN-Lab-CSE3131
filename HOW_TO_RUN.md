@@ -33,7 +33,9 @@ No internet on the lab PC? Download the ZIP on your phone or laptop and copy it 
 
 ## 2. Open it in Packet Tracer
 
-1. Use Cisco Packet Tracer **8.2.1 or newer** (Help > About shows the version).
+1. Any Cisco Packet Tracer from **7.x up to 9.x** should work, including older lab installs such
+   as 8.0, 8.1 and 8.2.0 (Help > About shows your version). The files carry a deliberately
+   old version stamp so older copies don't reject them.
 2. Double-click the `.pkt`, or in Packet Tracer use **File > Open** and pick it.
    If it asks you to log in, use your college Networking Academy / Skills for All account, or
    choose guest mode if the lab PC offers it.
@@ -94,8 +96,17 @@ Lab PCs often reset. Use **File > Save As** to save to your folder or pen drive 
 
 ## 5. If a file won't open (backup plan)
 
-- **"This file was created with a newer version"**: the lab PC's Packet Tracer is older
-  than 8.2.1. Use a newer PC, or rebuild the lab using the next point.
+- **"This file was created with a newer version"**: the files are stamped `7.0.0.0000`, so this
+  should only appear on Packet Tracer 6.x or older. If you do see it, note the version in
+  Help > About and re-stamp the file on any PC with Python 3 (you can do this at home):
+  ```
+  python tools/restamp.py --show P06_Static_Routing/P06_Static_Routing.pkt
+  python tools/restamp.py P06_Static_Routing/P06_Static_Routing.pkt --version 6.0.0.0000 --out fixed
+  ```
+  (`--version` can be any number at or below the lab's version.) Otherwise rebuild by hand
+  using the next point.
+- **Opens, but a device looks wrong or misbehaves on a very old version**: use the hand-rebuild
+  below. The `configs/` text is plain IOS and works on any version.
 - **Rebuild by hand in about 5 minutes:**
   1. Place the devices listed in `<file>.results.md` (2911 routers, 2960 switches, PC-PT).
   2. For serial links, add the **HWIC-2T** module to the router: power it off, drag in the
